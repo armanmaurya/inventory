@@ -12,6 +12,7 @@ class Dashboard extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Welcome to the Dashboard',

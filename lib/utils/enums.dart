@@ -1,0 +1,1 @@
+enum TransactionType { stockIn, stockOut }
