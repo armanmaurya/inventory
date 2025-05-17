@@ -1,35 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:inventory/widgets/theme_switcher.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:inventory/widgets/animated_bottom_nav.dart';
+import 'package:inventory/screens/inventory_screen.dart';
+import 'package:inventory/screens/analytics_screen.dart';
+import 'package:inventory/screens/settings_screen.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
+
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  int _currentIndex = 0;
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
+    const List<Widget> screens = [
+      InventoryScreen(),
+      AnalyticsScreen(),
+      SettingsScreen(),
+    ];
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Dashboard'),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() => _currentIndex = index);
+        },
+        children: screens,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (user != null) ...[
-              Text(
-                'Hello, ${user.displayName ?? 'User'}',
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-            ],
-            const Text(
-              'Welcome to the Dashboard',
-              style: TextStyle(fontSize: 24),
-            ),
-            ThemeSwitcher(),
-          ],
-        ),
+      bottomNavigationBar: AnimatedBottomNav(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          _currentIndex = index;
+          _pageController.animateToPage(
+            index,
+            duration: const Duration(milliseconds: 300),
+            curve: Curves.ease,
+          );
+        },
       ),
     );
   }
