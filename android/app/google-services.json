@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "687740103473",
+    "project_id": "inventory-656dc",
+    "storage_bucket": "inventory-656dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687740103473:android:0a70e74ce8aadcc48bde10",
+        "android_client_info": {
+          "package_name": "com.armanmaurya.inventory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmEC3DrMNatgqqIlTwD_0L3qZDZZEL00E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687740103473:android:8135219bf4aa9f578bde10",
+        "android_client_info": {
+          "package_name": "com.example.inventory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmEC3DrMNatgqqIlTwD_0L3qZDZZEL00E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
